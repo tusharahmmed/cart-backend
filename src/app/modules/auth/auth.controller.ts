@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import { RequestHandler } from 'express';
 import httpStatus from 'http-status';
-import config from '../../../config';
 import catchAsync from '../../../shared/catchAsync';
 import { sendResponse } from '../../../shared/sendResponse';
 import { AuthService } from './auth.service';
@@ -14,10 +13,10 @@ const createUser: RequestHandler = catchAsync(async (req, res) => {
 
   // set cookies
   const { refreshToken, ...others } = result;
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: config.env === 'production',
-  });
+  // res.cookie('refreshToken', refreshToken, {
+  //   httpOnly: true,
+  //   secure: config.env === 'production',
+  // });
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -34,10 +33,10 @@ const loginUser: RequestHandler = catchAsync(async (req, res) => {
 
   // set cookies
   const { refreshToken, ...others } = result;
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: config.env === 'production',
-  });
+  // res.cookie('refreshToken', refreshToken, {
+  //   httpOnly: true,
+  //   secure: config.env === 'production',
+  // });
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -53,10 +52,10 @@ const refreshToken: RequestHandler = catchAsync(async (req, res) => {
   const result = await AuthService.refreshToken(refreshToken);
 
   // set cookie
-  res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: config.env === 'production',
-  });
+  // res.cookie('refreshToken', refreshToken, {
+  //   // httpOnly: true,
+  //   secure: config.env === 'production',
+  // });
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

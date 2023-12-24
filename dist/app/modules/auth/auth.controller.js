@@ -25,7 +25,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
-const config_1 = __importDefault(require("../../../config"));
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const sendResponse_1 = require("../../../shared/sendResponse");
 const auth_service_1 = require("./auth.service");
@@ -34,10 +33,10 @@ const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     const result = yield auth_service_1.AuthService.createUser(payload);
     // set cookies
     const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        secure: config_1.default.env === 'production',
-    });
+    // res.cookie('refreshToken', refreshToken, {
+    //   httpOnly: true,
+    //   secure: config.env === 'production',
+    // });
     (0, sendResponse_1.sendResponse)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
@@ -51,10 +50,10 @@ const loginUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
     const result = yield auth_service_1.AuthService.loginUser(loginData);
     // set cookies
     const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        secure: config_1.default.env === 'production',
-    });
+    // res.cookie('refreshToken', refreshToken, {
+    //   httpOnly: true,
+    //   secure: config.env === 'production',
+    // });
     (0, sendResponse_1.sendResponse)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
@@ -67,10 +66,10 @@ const refreshToken = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, v
     const { refreshToken } = req.cookies;
     const result = yield auth_service_1.AuthService.refreshToken(refreshToken);
     // set cookie
-    res.cookie('refreshToken', refreshToken, {
-        httpOnly: true,
-        secure: config_1.default.env === 'production',
-    });
+    // res.cookie('refreshToken', refreshToken, {
+    //   // httpOnly: true,
+    //   secure: config.env === 'production',
+    // });
     (0, sendResponse_1.sendResponse)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
