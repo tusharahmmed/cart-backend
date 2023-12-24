@@ -8,9 +8,9 @@
 - Used Zod as for the schema validation
 - Used JSON Web Token for authentication & authorization
 
-### Live Link:
+### Live Link: https://clasic-frontend.vercel.app/
 
-### Frontend:
+### Frontend: https://github.com/tusharahmmed/cart-frontend
 
 ### Application Routes:
 
